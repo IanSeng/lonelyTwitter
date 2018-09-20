@@ -12,6 +12,7 @@ import java.util.Date;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -37,10 +38,33 @@ public class LonelyTwitterActivity extends Activity {
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				setResult(RESULT_OK);
-				String text = bodyText.getText().toString();
-				saveInFile(text, new Date(System.currentTimeMillis()));
-				finish();
+				Cat cat = new Cat();
+				cat.setType("This is a cat");
+				cat.setFood("cat love food");
+				Duck duck = new Duck();
+				duck.setType("it's a wild duck");
+				duck.setFood("Only fish");
+				DomesticDuck domesticDuck = new DomesticDuck();
+				domesticDuck.setType("It's a domestic duck");
+				domesticDuck.setFood("Fish and rice");
+				//Log.d("Ian",cat.swim());
+				cat.swim();
+				domesticDuck.swim();
+				duck.swim();
+				duck.fly();
+				domesticDuck.fly();
+				//Student st1 = new Student ("Ian",20);
+				//Student st2 = new Student ("cody");
+				//Log.d("ian",st2.getName());
+				//st1.setName("Ian");
+				//st1.setAge(20);
+
+				//Log.d("ian",st1.getName());
+				//Log.d("ian",Integer.toString(st1.getAge()));
+				//setResult(RESULT_OK);
+				//String text = bodyText.getText().toString();
+				//saveInFile(text, new Date(System.currentTimeMillis()));
+				//finish();
 
 			}
 		});
