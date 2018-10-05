@@ -1,3 +1,6 @@
+/**
+ *
+ */
 package ca.ualberta.cs.lonelytwitter;
 
 import java.io.BufferedReader;
@@ -24,12 +27,27 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import ca.ualberta.cs.lonelytwitter.R;
+import ca.ualberta.cs.lonelytwitter.Tweet;
+
+/**
+ * LonelyTwitter Activity inherits the Activity class
+ * it will call the xml file
+ */
 public class LonelyTwitterActivity extends Activity {
+
 
 	private static final String FILENAME = "file.sav";
 	private EditText bodyText;
 	private ListView oldTweetsList;
+	/**
+	 * The Tweet list.
+	 * initiallyze array list
+	 */
 	ArrayList<Tweet> tweetList;
+	/**
+	 * The Adapter.
+	 */
 	ArrayAdapter<Tweet> adapter;
 
 	/** Called when the activity is first created. */
@@ -71,7 +89,9 @@ public class LonelyTwitterActivity extends Activity {
 		});
 
 	}
-
+	/*
+	 * This is where the program start and the fucntion will be call after that
+	 */
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
@@ -80,6 +100,9 @@ public class LonelyTwitterActivity extends Activity {
 		adapter = new ArrayAdapter<Tweet>(this, R.layout.list_item, tweetList);
 		oldTweetsList.setAdapter(adapter);
 	}
+	/*
+	 * This is a method that load data from the file
+	 */
 
 	private String[] loadFromFile() {
 
@@ -105,7 +128,9 @@ public class LonelyTwitterActivity extends Activity {
 		}
 		return tweets.toArray(new String[tweets.size()]);
 	}
-	
+	/*
+	 *This method will save the data in the file
+	 */
 	private void saveInFile() {
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME,
