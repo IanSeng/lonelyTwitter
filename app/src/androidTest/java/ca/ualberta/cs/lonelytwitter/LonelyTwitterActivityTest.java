@@ -19,18 +19,18 @@ public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2<
         super(ca.ualberta.cs.lonelytwitter.LonelyTwitterActivity.class);
     }
 
-    public void setUp() throws Exception{
-        solo = new Solo(getInstrumentation(), getActivity());
+    public void setUp() throws Exception{ //run before the test
+        solo = new Solo(getInstrumentation(), getActivity()); //
     }
 
-    public void testStart() throws Exception {
+    public void testStart() throws Exception { //
         Activity activity = getActivity();
     }
 
 
     public void testTweet(){
         solo.assertCurrentActivity("Wrong Activity", LonelyTwitterActivity.class);
-        solo.enterText((EditText) solo.getView(R.id.body), "Test Tweet!");
+        solo.enterText((EditText) solo.getView(R.id.body), "Test Tweet!"); //mirror what the user will be doing
 
         solo.clickOnButton("Save");
 
@@ -39,7 +39,7 @@ public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2<
         assertTrue(solo.waitForText("Test Tweet!"));
 
         solo.clickOnButton("Clear");
-        assertFalse(solo.searchText("Test Tweet!"));
+        assertFalse(solo.searchText("Test Tweet!"));//assertTrue(solo.searchText("Test Tweet!"));
     }
 
     public void testClickTweetList(){
@@ -55,19 +55,31 @@ public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2<
         final ListView oldTweetsList = activity.getOldTweetsList();
         Tweet tweet = (Tweet) oldTweetsList.getItemAtPosition(0);
         assertEquals("Test Tweet!", tweet.getMessage());
-        
+
         solo.clickInList(0);
         solo.assertCurrentActivity("Wrong Activity", EditTweetActivity.class);
-        assertTrue(solo.waitForText("TextView"));
+        assertTrue(solo.waitForText("Test Tweet"));
 
         solo.goBack();
         solo.assertCurrentActivity("Wrong Activity", LonelyTwitterActivity.class);
     }
 
+   /* public void testClickedTweetList(){
+        LonelyTwitterActivity activity = (LonelyTwitterActivity) solo.getCurrentActivity();
+        solo.enterText((EditText) solo.getView(R.id.body), "Test Tweet!");
+        solo.clickOnButton("Save");
+        solo.waitForText("Test Tweet");
 
+        final ListView oldTweetsList = activity.getOldTweetsList();
+        Tweet tweet = (Tweet) oldTweetsList.getItemAtPosition(5);
+        assertEquals("Test Tweet!", tweet.getMessage());
+
+        solo.clickInList(5);
+
+    } */
 
     @Override
-    public void tearDown() throws Exception{
+    public void tearDown() throws Exception{ //the opposite of set up
         solo.finishOpenedActivities();
     }
 }

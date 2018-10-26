@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -73,8 +74,11 @@ public class LonelyTwitterActivity extends Activity {
 
 		oldTweetsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 			public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+				String tempListView = tweetList.get(i).toString();
 				Intent intent = new Intent(activity, EditTweetActivity.class);
+				intent.putExtra("ListViewclickValue", tempListView);
 				startActivity(intent);
+
 			}
 		});
 
